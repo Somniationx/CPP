@@ -30,5 +30,10 @@ int main() {
     std::cout << str2 << std::endl;
     std::cout << str2.size() << std::endl;
     std::cout << str2.capacity() << std::endl;
+
+    str2.erase(2,2);
+    std::cout << str2 << std::endl;
+    std::cout << str2.size() << std::endl;
+    std::cout << str2.capacity() << std::endl;
     return 0;
 }
