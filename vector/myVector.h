@@ -18,6 +18,20 @@ namespace Somn {
 		myVector();
 
 		/// <summary>
+		/// Copy constructor, copies elements from another myVector object.
+		/// </summary>
+		/// <param name="v">The myVector object to copy from.</param>
+		myVector(const myVector<T>& v);
+
+		/// <summary>
+		/// Constructs a myVector object from an iterator range.
+		/// </summary>
+		/// <param name="first">The beginning of the iterator range.</param>
+		/// <param name="last">The end of the iterator range.</param>
+		template<class InputIterator>
+		myVector(InputIterator first, InputIterator last);
+
+		/// <summary>
 		/// Add an element to the back of the vector
 		/// </summary>
 		/// <param name="val">The value to be added.</param>
@@ -105,6 +119,22 @@ namespace Somn {
 		/// <returns>An iterator pointing to the element following the erased element.</returns>
 		iterator erase(iterator pos);
 
+		/// <summary>
+		/// Swaps the elements of this vector with the elements of another vector.
+		/// </summary>
+		/// <param name="v">The vector to swap elements with.</param>
+		void swap(myVector<T>& v);
+
+		/// <summary>
+		/// Removes all elements from the vector, leaving it empty.
+		/// </summary>
+		void clear();
+
+		/// <summary>
+		/// Destructor for the myVector class.
+		/// </summary>
+		~myVector();
+
 	private:
 		iterator _start;          // Pointer to the start of the vector
 		iterator _finish;         // Pointer to the end of the used elements
@@ -114,6 +144,20 @@ namespace Somn {
 	// Default constructor
 	template<class T>
 	inline myVector<T>::myVector() : _start(nullptr), _finish(nullptr), _end_of_storage(nullptr) {}
+
+	template<class T>
+	inline myVector<T>::myVector(const myVector<T>& v)
+		: _start(nullptr),
+		_finish(nullptr),
+		_end_of_storage(nullptr)
+	{
+		// Create a temporary myVector object 'temp' and initialize it with the elements from 'v'
+		myVector<T> temp(v.begin(), v.end());0
+
+		// Swap the contents of 'temp' with the current object
+		swap(temp);
+	}
+
 
 	// Add an element to the back of the vector
 	template<class T>
@@ -298,4 +342,44 @@ namespace Somn {
 		_finish--;
 		return pos;
 	}
+
+	template<class T>
+	inline void myVector<T>::swap(myVector<T>& v)
+	{
+		// Swap the pointers to the start, finish, and end of storage with another vector.
+		std::swap(_start, v._start);
+		std::swap(_finish, v._finish);
+		std::swap(_end_of_storage, v._end_of_storage);
+	}
+
+	template<class T>
+	inline void myVector<T>::clear()
+	{
+		// Set the finish pointer to the start pointer effectively clearing the vector.
+		_finish = _start;
+	}
+	template<class T>
+	inline myVector<T>::~myVector()
+	{
+		// Deallocate the dynamically allocated memory
+		delete[] _start;
+
+		// Set pointers to nullptr to indicate that the object is now empty
+		_start = _finish = _end_of_storage = nullptr;
+	}
+
+	template<class T>
+	template<class InputIterator>
+	inline myVector<T>::myVector(InputIterator first, InputIterator last)
+		: _start(nullptr),
+		_finish(nullptr),
+		_end_of_storage(nullptr)
+	{
+		// Iterate through the input range and add elements to the vector using push_back
+		while (first != last) {
+			push_back(*first);
+			first++;
+		}
+	}
+
 }
