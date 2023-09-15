@@ -1,144 +1,166 @@
+/**
+ * @file myVector.h
+ * This is an internal header file, included by other library headers.
+ * Do not attempt to use it directly.
+ * @headername{myVector}
+ */
 #pragma once
 #include <cassert>
 
 namespace Somn {
 
-	/// <summary>
-	/// Template class for a dynamic array-like container.
-	/// </summary>
+	/**
+	 * @brief Template class for a dynamic array-like container.
+	 * @tparam T The type of elements in the container.
+	 */
 	template<class T>
 	class myVector {
 	public:
-		typedef T* iterator;           // Iterator type for non-constant access
-		typedef const T* const_iterator; // Iterator type for constant access
+		typedef T* iterator;           /**< Iterator type for non-constant access */
+		typedef const T* const_iterator; /**< Iterator type for constant access */
 
-		/// <summary>
-		/// Default constructor
-		/// </summary>
+		/**
+		 * @brief Default constructor
+		 */
 		myVector();
 
-		/// <summary>
-		/// Copy constructor, copies elements from another myVector object.
-		/// </summary>
-		/// <param name="v">The myVector object to copy from.</param>
+		/**
+		 * @brief Copy constructor, copies elements from another myVector object.
+		 * @param v The myVector object to copy from.
+		 */
 		myVector(const myVector<T>& v);
 
-		/// <summary>
-		/// Constructs a myVector object from an iterator range.
-		/// </summary>
-		/// <param name="first">The beginning of the iterator range.</param>
-		/// <param name="last">The end of the iterator range.</param>
+		/**
+		 * @brief Constructs a myVector object from an iterator range.
+		 * @param first The beginning of the iterator range.
+		 * @param last The end of the iterator range.
+		 */
 		template<class InputIterator>
 		myVector(InputIterator first, InputIterator last);
 
-		/// <summary>
-		/// Add an element to the back of the vector
-		/// </summary>
-		/// <param name="val">The value to be added.</param>
+		/**
+		 * @brief Add an element to the back of the vector
+		 * @param val The value to be added.
+		 */
 		void push_back(const T& val);
 
-		/// <summary>
-		/// Reserve space for a specified number of elements
-		/// </summary>
-		/// <param name="n">The number of elements to reserve memory for.</param>
+		/**
+		 * @brief Reserve space for a specified number of elements
+		 * @param n The number of elements to reserve memory for.
+		 */
 		void reserve(size_t n);
 
-		/// <summary>
-		/// Get the current size of the vector
-		/// </summary>
-		/// <returns>The number of elements in the vector.</returns>
+		/**
+		 * @brief Get the current size of the vector
+		 * @return The number of elements in the vector.
+		 */
 		size_t size() const;
 
-		/// <summary>
-		/// Get the current capacity of the vector
-		/// </summary>
-		/// <returns>The storage capacity of the vector.</returns>
+		/**
+		 * @brief Get the current capacity of the vector
+		 * @return The storage capacity of the vector.
+		 */
 		size_t capacity() const;
 
-		/// <summary>
-		/// Get an iterator pointing to the beginning of the vector
-		/// </summary>
-		/// <returns>An iterator pointing to the first element.</returns>
+		/**
+		 * @brief Get an iterator pointing to the beginning of the vector
+		 * @return An iterator pointing to the first element.
+		 */
 		iterator begin();
 
-		/// <summary>
-		/// Get a constant iterator pointing to the beginning of the vector
-		/// </summary>
-		/// <returns>A constant iterator pointing to the first element.</returns>
+		/**
+		 * @brief Get a constant iterator pointing to the beginning of the vector
+		 * @return A constant iterator pointing to the first element.
+		 */
 		const_iterator begin() const;
 
-		/// <summary>
-		/// Get a constant iterator pointing to the end of the vector
-		/// </summary>
-		/// <returns>A constant iterator pointing just past the last element.</returns>
+		/**
+		 * @brief Get a constant iterator pointing to the end of the vector
+		 * @return A constant iterator pointing just past the last element.
+		 */
 		const_iterator end() const;
 
-		/// <summary>
-		/// Get an iterator pointing to the end of the vector
-		/// </summary>
-		/// <returns>An iterator pointing just past the last element.</returns>
+		/**
+		 * @brief Get an iterator pointing to the end of the vector
+		 * @return An iterator pointing just past the last element.
+		 */
 		iterator end();
 
-		/// <summary>
-		/// Access an element in the vector by index
-		/// </summary>
-		/// <param name="pos">The index of the element to access.</param>
-		/// <returns>A reference to the element at the specified index.</returns>
+		/**
+		 * @brief Access an element in the vector by index
+		 * @param pos The index of the element to access.
+		 * @return A reference to the element at the specified index.
+		 */
 		T& operator[](size_t pos);
 
-		/// <summary>
-		/// Check if the vector is empty.
-		/// </summary>
-		/// <returns>True if the vector is empty, false otherwise.</returns>
+		/**
+		 * @brief Check if the vector is empty.
+		 * @return True if the vector is empty, false otherwise.
+		 */
 		bool empty() const;
 
-		/// <summary>
-		/// Resize the vector to contain 'n' elements.
-		/// </summary>
-		/// <param name="n">The new size of the vector.</param>
-		/// <param name="val">The value used to fill new elements if 'n' is greater than the current size.</param>
+		/**
+		 * @brief Resize the vector to contain 'n' elements.
+		 * @param n The new size of the vector.
+		 * @param val The value used to fill new elements if 'n' is greater than the current size.
+		 */
 		void resize(size_t n, T val = T());
 
-		/// <summary>
-		/// Remove the last element from the vector.
-		/// </summary>
+		/**
+		 * @brief Remove the last element from the vector.
+		 */
 		void pop_back();
 
-		/// <summary>
-		/// Insert an element at a specified position in the vector.
-		/// </summary>
-		/// <param name="pos">The iterator indicating the position to insert the element.</param>
-		/// <param name="val">The value to be inserted.</param>
-		/// <returns>An iterator pointing to the inserted element.</returns>
+		/**
+		 * @brief Insert an element at a specified position in the vector.
+		 * @param pos The iterator indicating the position to insert the element.
+		 * @param val The value to be inserted.
+		 * @return An iterator pointing to the inserted element.
+		 */
 		iterator insert(iterator pos, const T& val);
 
-		/// <summary>
-		/// Erase an element at a specified position in the vector.
-		/// </summary>
-		/// <param name="pos">The iterator indicating the position of the element to be erased.</param>
-		/// <returns>An iterator pointing to the element following the erased element.</returns>
+		/**
+		 * @brief Erase an element at a specified position in the vector.
+		 * @param pos The iterator indicating the position of the element to be erased.
+		 * @return An iterator pointing to the element following the erased element.
+		 */
 		iterator erase(iterator pos);
 
-		/// <summary>
-		/// Swaps the elements of this vector with the elements of another vector.
-		/// </summary>
-		/// <param name="v">The vector to swap elements with.</param>
+		/**
+		 * @brief Swaps the elements of this vector with the elements of another vector.
+		 * @param v The vector to swap elements with.
+		 */
 		void swap(myVector<T>& v);
 
-		/// <summary>
-		/// Removes all elements from the vector, leaving it empty.
-		/// </summary>
+		/**
+		 * @brief Removes all elements from the vector, leaving it empty.
+		 */
 		void clear();
 
-		/// <summary>
-		/// Destructor for the myVector class.
-		/// </summary>
+		/**
+		 * @brief Copy assignment operator for myVector.
+		 * @param v The myVector object to copy from.
+		 * @return Reference to this myVector after copying.
+		 */
+		myVector<T>& operator=(const myVector<T>& v);
+
+		/**
+		 * @brief Constructor for creating a myVector with a specified size and initial value.
+		 * @param n The size of the vector.
+		 * @param val The initial value for elements in the vector.
+		 */
+		myVector(size_t n, const T& val = T());
+		myVector(int n, const T& val = T());
+
+		/**
+		 * @brief Destructor for the myVector class.
+		 */
 		~myVector();
 
 	private:
-		iterator _start;          // Pointer to the start of the vector
-		iterator _finish;         // Pointer to the end of the used elements
-		iterator _end_of_storage; // Pointer to the end of the allocated memory
+		iterator _start;          /**< Pointer to the start of the vector */
+		iterator _finish;         /**< Pointer to the end of the used elements */
+		iterator _end_of_storage; /**< Pointer to the end of the allocated memory */
 	};
 
 	// Default constructor
@@ -152,7 +174,7 @@ namespace Somn {
 		_end_of_storage(nullptr)
 	{
 		// Create a temporary myVector object 'temp' and initialize it with the elements from 'v'
-		myVector<T> temp(v.begin(), v.end());0
+		myVector<T> temp(v.begin(), v.end());
 
 		// Swap the contents of 'temp' with the current object
 		swap(temp);
@@ -185,7 +207,10 @@ namespace Somn {
 
 			// If the vector is not empty, copy the existing data to the new space.
 			if (_start) {
-				memcpy(tempSpace, _start, sizeof(T) * size());
+				//memcpy(tempSpace, _start, sizeof(T) * size());
+				for (size_t index = 0; index < size(); index++) {
+					tempSpace[index] = _start[index];
+				}
 				delete[] _start;
 			}
 
@@ -358,6 +383,41 @@ namespace Somn {
 		// Set the finish pointer to the start pointer effectively clearing the vector.
 		_finish = _start;
 	}
+
+	template<class T>
+	inline myVector<T>& myVector<T>::operator=(const myVector<T>& v)
+	{
+		if (v._start != _start) {
+			myVector<T> temp(v);
+			swap(v);
+		}
+		return *this;
+	}
+
+	template<class T>
+	inline myVector<T>::myVector(size_t n, const T& val)
+		: _start(nullptr),
+		_finish(nullptr),
+		_end_of_storage(nullptr)
+	{
+		reserve(n);
+		for (size_t index = 0; index < n; index++) {
+			push_back(val);
+		}
+	}
+
+	template<class T>
+	inline myVector<T>::myVector(int n, const T& val)
+		: _start(nullptr),
+		_finish(nullptr),
+		_end_of_storage(nullptr)
+	{
+		reserve(n);
+		for (size_t index = 0; index < n; index++) {
+			push_back(val);
+		}
+	}
+
 	template<class T>
 	inline myVector<T>::~myVector()
 	{
