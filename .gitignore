@@ -1,32 +1,64 @@
-# Prerequisites
-*.d
+# 忽略编译和构建输出文件和目录
+[Oo]bj/
+[Bb]in/
+[Bb]inaries/
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+[Oo][Uu][Tt]/
 
-# Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
+# 忽略 Visual Studio 生成的文件
+.vscode/
+*.suo
+*.user
+*.sln.docstates
+*.userprefs
+*.sdf
+*.opensdf
+[Tt]humbs.db
 
-# Precompiled Headers
-*.gch
-*.pch
+# 忽略 IntelliSense 相关文件
+*.sdf
+*.opensdf
+*.VC.db
 
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
+# 忽略 Visual Studio 缓存和临时文件
+ipch/
+[Tt]est[Rr]esults/
+[Oo]bj[Oo]ut/
+[Bb]in[Oo]ut/
+[Vv]s[Vv]ersion[Oo]ut/
 
-# Fortran module files
-*.mod
-*.smod
+# 忽略 Visual Studio 项目文件和用户文件
+*.vcxproj
+*.vcproj
+*.vcxproj.filters
+*.sln.docstates
 
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
+# 忽略本地配置文件（根据需要）
+appsettings.json
+secrets.json
 
-# Executables
-*.exe
-*.out
-*.app
+# 忽略临时和缓存文件
+[Tt]emp/
+[Cc]ache/
+*.log
+
+# 忽略编辑器临时文件
+*~
+
+# 忽略 Visual Studio 扩展相关文件
+*.vsix
+*.vsixmanifest
+
+# 忽略 Visual Studio 解决方案文件
+*.sln
+
+# 忽略 NuGet 包的锁文件
+*.lock
+
+# 忽略 vsidx 文件
+*.vsidx
