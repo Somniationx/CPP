@@ -82,7 +82,7 @@ namespace Somn {
          * @param it The iterator to be compared with the current iterator.
          * @return True if the iterators are not equal, false otherwise.
          */
-        bool operator!=(const __list_iterator<T, Ref>& it) {
+        bool operator!=(const __list_iterator<T, Ref, Ptr>& it) {
             return _pnode != it._pnode;
         }
     };

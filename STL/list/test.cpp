@@ -1,5 +1,5 @@
 #include <iostream>
-#include "your_list_header.h"  // Replace with the actual header file name
+#include "list_en.h"
 
 int main() {
     Somn::list<int> myList;
@@ -15,8 +15,8 @@ int main() {
     myList.insert(it, 100);
 
     // Print the elements using an iterator
-    for (Somn::list<int>::iterator iter = myList.begin(); iter != myList.end(); ++iter) {
-        std::cout << *iter << " ";
+    for (int & iter : myList) {
+        std::cout << iter << " ";
     }
     std::cout << std::endl;
 
@@ -25,8 +25,8 @@ int main() {
     myList.pop_back();
 
     // Print the remaining elements
-    for (Somn::list<int>::iterator iter = myList.begin(); iter != myList.end(); ++iter) {
-        std::cout << *iter << " ";
+    for (int & iter : myList) {
+        std::cout << iter << " ";
     }
     std::cout << std::endl;
 
